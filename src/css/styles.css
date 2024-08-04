@@ -22,6 +22,7 @@ p {
 
 ul,
 ol {
+  list-style: none;
   margin-top: 0;
   margin-bottom: 0;
   padding-left: 0;
@@ -33,5 +34,63 @@ button {
 
 .container {
   max-width: 1440px;
-  padding: 32px 32px;
+  margin: 0 auto;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+.gallery-item {
+  border: 1px solid #808080;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gallery-item:hover,
+.gallery-item:focus {
+  transform: scale(1.04);
+}
+
+.form {
+  width: 400px;
+  display: flex;
+  gap: 8px;
+  margin: 32px auto;
+}
+
+.form > input {
+  width: 272px;
+  padding: 8px 16px;
+  border: 1px solid #808080;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form > input:hover {
+  border-color: #000000;
+}
+
+.form > input:focus {
+  border-color: #4E75FF;
+}
+
+.form > button {
+  width: 92px;
+  padding: 8px 16px;
+  background: #4E75FF;
+  color: #FFF;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form > button:hover,
+.form > button:focus {
+  background-color: #6C8CFF;
 }

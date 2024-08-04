@@ -4,10 +4,25 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla App Template</title>
+    <title>goit-advancedjs-hw-03</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
+    <div class="container">
+      <form class="form">
+        <input type="text" name="query" placeholder="Enter your request..." autocomplete="off" />
+        <button type="submit">Search</button>
+      </form>
+
+      <div id="loader" class="loader hidden">
+        <div class="lds-dual-ring"></div>
+      </div>
+
+      <div class="gallery"></div>
+    </div>
     <script type="module" src="./main.js"></script>
   </body>
 </html>
