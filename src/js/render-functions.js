@@ -3,6 +3,27 @@ import 'izitoast/dist/css/iziToast.min.css';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
+let lightbox = null;
+
+const refreshLightbox = () => {
+  if (!lightbox) {
+    lightbox = new SimpleLightbox('.gallery a', {
+      captionsData: 'alt',
+      captionDelay: 250,
+    });
+  }
+
+  lightbox.refresh();
+};
+
+export const toggleLoader = loader => {
+  if (loader.classList.contains('hidden')) {
+    loader.classList.remove('hidden');
+  } else {
+    loader.classList.add('hidden');
+  }
+};
+
 export const showErrorMessage = errorMessage => {
   console.log(errorMessage);
   let settings = {
@@ -24,6 +45,7 @@ export const showErrorMessage = errorMessage => {
 };
 
 export const fillGallery = (gallery, photosList) => {
+  console.log(photosList);
   const galleryItems = photosList.map(photo => {
     return `
         <div class='gallery-item'>
@@ -31,31 +53,31 @@ export const fillGallery = (gallery, photosList) => {
                 <img src="${photo.previewURL}" alt="${photo.tags}" loading="lazy" width="360" height="200"/>
             </a>
             <ul class="info">
-                <li>
-                    <p class="info-name">Likes</p>
-                    <p class="info-item">${photo.likes}</p>
+                <li class="info-item">
+                    <p class="info-category">Likes</p>
+                    <p class=>${photo.likes}</p>
                 </li>
-                <li>
-                    <p class="info-name">Views</p>
-                    <p class="info-item">${photo.views}</p>
+                <li class="info-item">
+                    <p class="info-category">Views</p>
+                    <p class=>${photo.views}</p>
                 </li>
-                <li>
-                    <p class="info-name">Comments</p>
-                    <p class="info-item">${photo.comments}</p>
+                <li class="info-item">
+                    <p class="info-category">Comments</p>
+                    <p class=>${photo.comments}</p>
                 </li>
-                <li>
-                    <p class="info-name">Downloads</p>
-                    <p class="info-item">${photo.downloads}</p>
+                <li class="info-item">
+                    <p class="info-category">Downloads</p>
+                    <p class=>${photo.downloads}</p>
                 </li>
             </ul>
         </div>
         `;
   });
   gallery.innerHTML = galleryItems.join('\n');
-  const lightbox = new SimpleLightbox('.gallery a');
-  lightbox.refresh();
+  refreshLightbox();
 };
 
 export const clearGallery = gallery => {
   gallery.innerHTML = '';
+  refreshLightbox();
 };
