@@ -18,14 +18,21 @@ const refreshLightbox = () => {
 
 export const toggleLoader = loader => {
   if (loader.classList.contains('hidden')) {
-    loader.classList.remove('hidden');
+    showElement(loader, true);
   } else {
-    loader.classList.add('hidden');
+    showElement(loader, false);
+  }
+};
+
+export const showElement = (el, show) => {
+  if (show) {
+    el.classList.remove('hidden');
+  } else {
+    el.classList.add('hidden');
   }
 };
 
 export const showErrorMessage = errorMessage => {
-  console.log(errorMessage);
   let settings = {
     titleSize: '16px',
     titleLineHeight: '24px',
@@ -36,21 +43,19 @@ export const showErrorMessage = errorMessage => {
     theme: 'dark',
     position: 'topRight',
     title: 'Error',
-    iconUrl: '../img/icon-error.svg',
     backgroundColor: '#EF4040',
     message: errorMessage,
   };
 
-  iziToast.show(settings);
+  iziToast.error(settings);
 };
 
 export const fillGallery = (gallery, photosList) => {
-  console.log(photosList);
   const galleryItems = photosList.map(photo => {
     return `
         <div class='gallery-item'>
             <a href="${photo.largeImageURL}" class="gallery-link">
-                <img src="${photo.previewURL}" alt="${photo.tags}" loading="lazy" width="360" height="200"/>
+                <img src="${photo.previewURL}" alt="${photo.tags}" loading="lazy" width="360" height="150"/>
             </a>
             <ul class="info">
                 <li class="info-item">

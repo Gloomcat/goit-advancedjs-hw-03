@@ -2,9 +2,11 @@ import { showErrorMessage } from './render-functions';
 
 const API_KEY = '45271330-704da2140a32d702981ddfad2';
 
-export const fetchPhotosList = query => {
+export const fetchPhotos = (query, page) => {
   return fetch(
-    `https://pixabay.com/api/?key=${API_KEY}&q=${encodeURIComponent(query)}`
+    `https://pixabay.com/api/?key=${API_KEY}&q=${encodeURIComponent(
+      query
+    )}&orientation=horizontal&safesearch=true&per_page=9&page=${page}`
   )
     .then(response => {
       if (!response.ok) {
@@ -14,15 +16,6 @@ export const fetchPhotosList = query => {
       }
 
       return response.json();
-    })
-    .then(data => {
-      if (parseInt(data.totalHits) > 0) {
-        return data.hits;
-      } else {
-        throw new Error(
-          'Sorry, there are no images matching your search query. Please try again!'
-        );
-      }
     })
     .catch(error => {
       showErrorMessage(error.message);
